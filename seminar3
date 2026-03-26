@@ -1,0 +1,491 @@
+#include <stdio.h>
+#include <stdbool.h>
+
+int zadacha_1();
+int zadacha_2();
+int zadacha_3();
+int zadacha_4();
+int zadacha_5();
+int zadacha_6();
+int zadacha_7();
+int zadacha_8();
+int zadacha_9();
+
+int main()
+{
+    int a;
+    while(true)
+    {
+        printf("\nIzberete zadacha (1-9): ");
+        scanf("%d", &a);
+        switch(a)
+        {
+            case 1:
+                zadacha_1();
+                break;
+            case 2:
+                zadacha_2();
+                break;
+            case 3:
+                zadacha_3();
+                break;
+            case 4:
+                zadacha_4();
+                break;
+            case 5:
+                zadacha_5();
+                break;
+            case 6:
+                zadacha_6();
+                break;
+            case 7:
+                zadacha_7();
+                break;
+            case 8:
+                zadacha_8();
+                break;
+            case 9:
+                zadacha_9();
+                break;
+            default:
+                printf("Nevalidna zadacha! Molya izberete ot 1 do 9.\n");
+                break;
+        }
+    }
+    return 0;
+}
+
+int zadacha_1()
+{
+    int N;
+    printf("vuvedete n broy elementi: ");
+    scanf("%d", &N);
+
+    int arr[N];  // Сега N вече е известен
+    int start = 0;
+    int maxLength = 1;
+    int currentStart = 0;
+    int currentLength = 1;
+
+    printf("\nvuvedete el na masiva:\n");
+    for (int i = 0; i < N; i++)
+    {
+        printf("arr[%d] = ", i);
+        scanf("%d", &arr[i]);
+    }
+
+    // Сортиране
+    for (int i = 0; i < N - 1; i++)
+    {
+        for (int j = 0; j < N - i - 1; j++)
+        {
+            if (arr[j] > arr[j + 1])
+            {
+                int temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+    }
+
+    printf("\nSortiran masiv: ");
+    for (int i = 0; i < N; i++)
+    {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+
+    // Намиране на най-дългата площадка
+    for (int i = 1; i < N; i++)
+    {
+        if (arr[i] == arr[i - 1])
+        {
+            currentLength++;
+        }
+        else
+        {
+            if (currentLength > maxLength)
+            {
+                maxLength = currentLength;
+                start = currentStart;
+            }
+            currentStart = i;
+            currentLength = 1;
+        }
+    }
+
+    if (currentLength > maxLength)
+    {
+        maxLength = currentLength;
+        start = currentStart;
+    }
+
+    printf("\nnay dulgata ploshtadka\n");
+    printf("nachalo zapochva ot %d element, koyto ima stoynost %d\n", start, arr[start]);
+    printf("duljinata na redicata e: %d\n", maxLength);
+
+    return 0;
+}
+
+int zadacha_2()
+{
+    int N;
+    printf("vuvedete n broy elementi: ");
+    scanf("%d", &N);
+
+    int arr[N];
+    bool indicator = true;
+
+    printf("\nvuvedete el na masiva:\n");
+    printf("arr[0] = ");
+    scanf("%d", &arr[0]);
+
+    for (int i = 1; i < N; i++)
+    {
+        printf("arr[%d] = ", i);
+        scanf("%d", &arr[i]);
+
+        if (i % 2 == 1)
+        {
+            if (arr[i-1] >= arr[i])
+                indicator = false;
+        }
+        else
+        {
+            if (arr[i-1] <= arr[i])
+                indicator = false;
+        }
+    }
+
+    if (indicator)
+    {
+        printf("\nRelaciite sa izpulneni!\n");
+    }
+    else
+    {
+        printf("\nRelaciite NE sa izpulneni!\n");
+    }
+
+    return 0;
+}
+
+int zadacha_3()
+{
+    int N;
+    printf("Vavedete broy na elementite N: ");
+    scanf("%d", &N);
+
+    int arr[N];
+    int reversed[N];
+
+    printf("\nVavedete elementite na masiva:\n");
+    for (int i = 0; i < N; i++)
+    {
+        printf("arr[%d] = ", i);
+        scanf("%d", &arr[i]);
+    }
+
+    for (int i = 0; i < N; i++)
+    {
+        reversed[i] = arr[N - 1 - i];
+    }
+
+    printf("\nOburnat masiv:\n");
+    for (int i = 0; i < N; i++)
+    {
+        printf("%d ", reversed[i]);
+    }
+    printf("\n");
+
+    return 0;
+}
+
+int zadacha_4()
+{
+    int N, K;
+    printf("vuvedete broy na elementite N: ");
+    scanf("%d", &N);
+
+    int arr[N];
+    printf("vuvedete elementite na masiva:\n");
+
+    for (int i = 0; i < N; i++) {
+        printf("arr[%d] = ", i);
+        scanf("%d", &arr[i]);
+    }
+    printf("vuvedete K: ");
+    scanf("%d", &K);
+
+    K = K % N;
+    if (K < 0) K += N;
+
+    int result[N];
+    for (int i = 0; i < N; i++) {
+        result[(i + K) % N] = arr[i];
+    }
+
+    printf("\nizhod sled izmestvane s %d pozicii:\n", K);
+    for (int i = 0; i < N; i++)
+    {
+        printf("%d ", result[i]);
+    }
+    printf("\n");
+    return 0;
+}
+
+int zadacha_5()
+{
+    int N, K;
+    printf("vuvedete broy na elementite N: ");
+    scanf("%d", &N);
+
+    int arr[N];
+    printf("vuvedete elementite na masiva:\n");
+
+    for (int i = 0; i < N; i++)
+    {
+        printf("arr[%d] = ", i);
+        scanf("%d", &arr[i]);
+    }
+
+    printf("vuvedete K: ");
+    scanf("%d", &K);
+
+    if (K < 1 || K > N) {
+        printf("Nevalidno K! Tya trqbva da e mezhdu 1 i %d.\n", N);
+        return 1;
+    }
+
+    int temp[N];
+    for (int i = 0; i < N; i++)
+    {
+        temp[i] = arr[i];
+    }
+
+    // Сортиране в низходящ ред
+    for (int i = 0; i < N - 1; i++) {
+        for (int j = 0; j < N - i - 1; j++) {
+            if (temp[j] < temp[j + 1]) {
+                int swap = temp[j];
+                temp[j] = temp[j + 1];
+                temp[j + 1] = swap;
+            }
+        }
+    }
+
+    printf("\n%d-tiyat po golimina element e: %d\n", K, temp[K - 1]);
+    return 0;
+}
+
+int zadacha_6()
+{
+    int N;
+    printf("vuvedete broy na elementite N: ");
+    scanf("%d", &N);
+
+    int arr[N];
+    printf("vuvedete elementite na masiva:\n");
+
+    for (int i = 0; i < N; i++) {
+        printf("arr[%d] = ", i);
+        scanf("%d", &arr[i]);
+    }
+
+    if (N == 0) {
+        printf("Prazna redica.\n");
+        return 0;
+    }
+
+    int maxLen = 1, maxStart = 0;
+    int curLen = 1, curStart = 0;
+    int trend = 0;
+
+    for (int i = 1; i < N; i++) {
+        if (arr[i] > arr[i - 1])
+        {
+            if (trend == 0 || trend == 1)
+            {
+                trend = 1;
+                curLen++;
+            }
+            else
+            {
+                trend = 1;
+                curLen = 2;
+                curStart = i - 1;
+            }
+        }
+        else if (arr[i] < arr[i - 1])
+        {
+            if (trend == 0 || trend == -1)
+            {
+                trend = -1;
+                curLen++;
+            }
+            else
+            {
+                trend = -1;
+                curLen = 2;
+                curStart = i - 1;
+            }
+        }
+        else
+        {
+            trend = 0;
+            curLen = 1;
+            curStart = i;
+        }
+
+        if (curLen > maxLen) {
+            maxLen = curLen;
+            maxStart = curStart;
+        }
+    }
+
+    printf("\nNay-dalgata monotonna podredica (neprekasnata):\n");
+    for (int i = maxStart; i < maxStart + maxLen; i++)
+    {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+    return 0;
+}
+
+int zadacha_7()
+{
+    int N, target;
+    printf("vuvedete broy na elementite N: ");
+    scanf("%d", &N);
+
+    int arr[N];
+    printf("vuvedete elementite na masiva:\n");
+    for (int i = 0; i < N; i++) {
+        printf("arr[%d] = ", i);
+        scanf("%d", &arr[i]);
+    }
+
+    printf("vuvedete tursenata suma: ");
+    scanf("%d", &target);
+
+    int start = 0, currentSum = 0;
+    int found = 0;
+
+    for (int end = 0; end < N; end++)
+    {
+        currentSum += arr[end];
+
+        while (currentSum > target && start <= end) {
+            currentSum -= arr[start];
+            start++;
+        }
+        if (currentSum == target) {
+            found = 1;
+            printf("\nNamerena e podredica: ");
+            for (int i = start; i <= end; i++) {
+                printf("%d ", arr[i]);
+            }
+            printf("\n");
+            break;
+        }
+    }
+
+    if (!found) {
+        printf("\nNyama podredica sys suma %d.\n", target);
+    }
+    return 0;
+}
+
+int zadacha_8()
+{
+    int size = 20;
+    int arr[20];
+    int currentCount = 10;
+
+    printf("vuvedete 10 chisla za purvonachalniq masiv:\n");
+    for (int i = 0; i < 10; i++)
+    {
+        printf("arr[%d] = ", i);
+        scanf("%d", &arr[i]);
+    }
+
+    int num, pos;
+    while (true)
+    {
+        printf("\nvuvedete chislo i poziciya (za kray vuvedete 0 za chisloto): ");
+        scanf("%d", &num);
+        if (num == 0) {
+            break;
+        }
+        scanf("%d", &pos);
+        if (currentCount >= size) {
+            printf("Masivut e zapulnen! Ne moje da se dobavi poveche.\n");
+            break;
+        }
+        if (pos < 0 || pos > currentCount)
+        {
+            printf("Nevalidna poziciya! Poziciyata trqbva da e mezhdu 0 i %d.\n", currentCount);
+            continue;
+        }
+        for (int i = currentCount; i > pos; i--)
+        {
+            arr[i] = arr[i - 1];
+        }
+        arr[pos] = num;
+        currentCount++;
+    }
+
+    printf("\nKraen masiv:\n");
+    for (int i = 0; i < currentCount; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+    return 0;
+}
+
+int zadacha_9()
+{
+    int N;
+    printf("vuvedete broy na elementite N: ");
+    scanf("%d", &N);
+
+    int arr[N];
+    printf("vuvedete elementite na masiva:\n");
+    for (int i = 0; i < N; i++) {
+        printf("arr[%d] = ", i);
+        scanf("%d", &arr[i]);
+    }
+
+    if (N == 0)
+    {
+        printf("Prazna redica.\n");
+        return 0;
+    }
+
+    int maxStart = 0, maxLen = 1;
+    int curStart = 0, curLen = 1;
+
+    for (int i = 1; i < N; i++) {
+        if (arr[i] == arr[i - 1]) {
+            curLen++;
+        } else {
+            if (curLen > maxLen) {
+                maxLen = curLen;
+                maxStart = curStart;
+            }
+            curStart = i;
+            curLen = 1;
+        }
+    }
+
+    if (curLen > maxLen) {
+        maxLen = curLen;
+        maxStart = curStart;
+    }
+
+    printf("\nnay-dulgata redica ot ednakvi elementi:\n");
+    for (int i = maxStart; i < maxStart + maxLen; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+    return 0;
+}
