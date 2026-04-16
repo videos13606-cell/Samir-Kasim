@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// 1z: Proverka na redove i koloni
 void zadacha1() {
     printf("\n--- Zadacha 1 ---\n");
     int n, m, i, j;
@@ -25,7 +24,6 @@ void zadacha1() {
     else printf("Uslovieto NE e izpulneno.\n");
 }
 
-// 2z: Nay-golyam sbor na okolni
 void zadacha2() {
     printf("\n--- Zadacha 2 ---\n");
     int n, m, i, j;
@@ -54,7 +52,6 @@ void zadacha2() {
     printf("Chisloto s nay-golyam sbor na okolni (%d) e: %d\n", max_sbor, tishlo);
 }
 
-// 3z: Razmqna na redove
 void zadacha3() {
     printf("\n--- Zadacha 3 ---\n");
     int n, m;
@@ -82,7 +79,6 @@ void zadacha3() {
     }
 }
 
-// 4z: Priyateli (Oprostena s matrica na susedstvo za malki N ili broyach)
 void zadacha4() {
     printf("\n--- Zadacha 4 ---\n");
     int n, m, p1, p2, tursen;
@@ -174,9 +170,7 @@ void zadacha5() {
             printf("Greshna komanda!\n");
         }
     }
-}
-
-// 6z: Dinamichen masiv i prosti chisla
+}//ujasna zadacha
 int e_prosto(int n) {
     if(n < 2) return 0;
     for(int i = 2; i*i <= n; i++) if(n % i == 0) return 0;
@@ -199,7 +193,6 @@ void zadacha6() {
     free(m1); free(m2);
 }
 
-// 7z: Maksimalna podmatrica 3x3
 void zadacha7() {
     printf("\n--- Zadacha 7 ---\n");
     int n, m;
@@ -223,7 +216,6 @@ void zadacha7() {
     }
 }
 
-// 8z: Vmukvane v dinamichen masiv
 void zadacha8() {
     printf("\n--- Zadacha 8 ---\n");
     int *arr = (int*)malloc(100 * sizeof(int));
