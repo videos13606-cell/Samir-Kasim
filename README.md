@@ -1,2 +1,2 @@
 # Samir-Kasim
-zadachi
+Zadachite, koito sum reshil po vreme na seminarnite uprajneniq
