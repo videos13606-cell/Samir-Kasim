@@ -1,0 +1,503 @@
+#include <stdio.h>
+#include <math.h>
+#include <stdbool.h>
+int poGolqmo(int a, int b)
+{
+    if (a>b){
+        return a;
+    }
+    else {
+        return b;
+    }
+}
+
+int poMalko(int a, int b)
+{
+    if (a>b){
+        return b;
+    }
+    else {
+        return a;
+    }
+}
+
+
+int main() {
+    int a;
+
+    while(true)
+        {
+            printf("\nIzbete zadacha (1-12): ");
+            scanf("%d", &a);
+            switch(a)
+            {
+                case 1:
+                    zadacha1();
+                    break;
+                case 2:
+                    zadacha2();
+                    break;
+                case 3:
+                    zadacha3();
+                    break;
+                case 4:
+                    zadacha4();
+                    break;
+                case 5:
+                    zadacha5();
+                    break;
+                case 6:
+                    zadacha6();
+                    break;
+                case 7:
+                    zadacha7();
+                    break;
+                case 8:
+                    zadacha8();
+                    break;
+                case 9:
+                    zadacha9();
+                    break;
+                case 10:
+                    zadacha10();
+                    break;
+                case 11:
+                    zadacha11();
+                    break;
+                case 12:
+                    zadacha12();
+                    break;
+            }
+    }
+
+    return 0;
+}
+
+int zadacha1()
+{
+
+    int a,b;
+
+    printf("Vuvedete chislo a: ");
+    scanf("%d", &a);
+    printf("Vuvedete chislo b: ");
+    scanf("%d", &b);
+
+    int min = poMalko(a,b);
+    int max = poGolqmo(a,b);
+
+    printf("\n\nPo-golqmoto chislo e: %d\n", max);
+    printf("Po-malkoto chislo e: %d\n", min);
+
+    return 0;
+}
+int zadacha2()
+{
+    int chas,minuti;
+
+    printf("Vuvedete chas: ");
+    scanf("%d",&chas);
+    printf("Vuvedete minuti: ");
+    scanf("%d",&minuti);
+
+    minuti = minuti + 15;
+
+    if (minuti>59){
+        minuti = minuti - 60;
+        chas++;
+    }
+    if (chas >23){
+        chas = chas -24;
+    }
+
+    if (minuti<10)
+    {
+        printf("Chasut sled 15 minuti e %d:0%d.",chas,minuti);
+    }
+    else{
+    printf("Chasut sled 15 minuti e %d:%d.",chas,minuti);
+    }
+    return 0;
+}
+int zadacha3()
+{
+
+    int a,b,c;
+    bool equal;
+
+    printf("Vuvedete 3 chisla: ");
+    scanf("%d %d %d", &a,&b,&c);
+
+    if(a == b && b == c)
+    {
+        equal = true;
+    }
+    else
+    {
+        equal = false;
+    }
+
+    if(equal)
+    {
+        printf("Chislata sa ednakvi");
+    }
+    else{
+        printf("Ne sa ednakvi");
+    }
+    return 0;
+
+}
+int zadacha4()
+{
+int a;
+    double bonus = 0;
+
+    printf("Vuvedete tochki: ");
+    scanf("%d", &a);
+
+
+    if (a<=100)
+    {
+        bonus = bonus+5;
+    }
+    else if (a<=1000)
+    {
+        bonus = bonus + a*0.2;
+    }
+    else
+    {
+        bonus = bonus + a*0.1;
+    }
+    if (a%2==0)
+    {
+        bonus++;
+    }
+    if (a % 10 == 5)
+    {
+        bonus = bonus + 2;
+    }
+
+    double obshto= a+bonus;
+
+    printf("\n\n Bonus tochki: %.1f", bonus);
+    printf("\nObshto tochki: %.1f", obshto);
+
+    return 0;
+}
+int zadacha5()
+{
+int t1, t2, t3;
+    int obshto, minutes, seconds;
+
+    printf("Vuvedete vremeto na purviq systezatel: ");
+    scanf("%d", &t1);
+    printf("Vuvedete vremeto na vtoriq systezatel: ");
+    scanf("%d", &t2);
+    printf("Vuvedete vremeto na tretiq systezatel: ");
+    scanf("%d", &t3);
+
+    if (t1 < 1 || t1 > 50 || t2 < 1 || t2 > 50 || t3 < 1 || t3 > 50) {
+        printf("Greshen vhod! Vremenata trqbva da sa mejdu 1 i 50 sekundi.\n");
+        return 1;
+    }
+
+    obshto = t1 + t2 + t3;
+    minutes =  obshto/ 60;
+    seconds = obshto % 60;
+
+    if (seconds<10)
+    {
+        printf("Vreme: %d:0%d\n", minutes, seconds);
+    }
+    else
+    {
+    printf("Vreme: %d:%d\n", minutes, seconds);
+    }
+    return 0;
+}
+int zadacha6()
+{
+     double x1, y1, x2, y2, x, y;
+
+    printf("Vuvedete koordinati za pravougulnika:\nVuvedete x1: ");
+    scanf("%lf", &x1);
+    printf("Vuvedete y1: ");
+    scanf("%lf", &y1);
+
+    printf("Vuvedete x2: ");
+    scanf("%lf", &x2);
+    printf("Vuvedete y2: ");
+    scanf("%lf", &y2);
+
+    printf("Vuvedete x na tochkata: ");
+    scanf("%lf", &x);
+    printf("Vuvedete y na tochkata: ");
+    scanf("%lf", &y);
+
+    if (x >= x1 && x <= x2 && y >= y1 && y <= y2)
+    {
+        printf("\nInside");
+    }
+    else
+    {
+        printf("\nOutside");
+    }
+
+    return 0;
+}
+int zadacha7()
+{
+    int razstoyanie;
+    char period;
+    double taksiCena, avtobusCena, vlakCena, minimalnaCena;
+
+    printf("Vuvedete broi kilometri: ");
+    scanf("%d", &razstoyanie);
+
+    printf("Vuvedete period (D za den, N za nosht): ");
+    scanf(" %c", &period);
+
+    if (period == 'D' || period == 'd')
+    {
+        taksiCena = 0.70 + razstoyanie * 0.79;
+    }
+    else
+    {
+        taksiCena = 0.70 + razstoyanie * 0.90;
+    }
+
+    if (razstoyanie >= 20)
+    {
+        avtobusCena = razstoyanie * 0.09;
+    }
+    else
+    {
+        avtobusCena = -1;
+    }
+
+    if (razstoyanie >= 100)
+    {
+        vlakCena = razstoyanie * 0.06;
+    }
+    else
+    {
+        vlakCena = -1;
+    }
+
+    minimalnaCena = taksiCena;
+
+    if (minimalnaCena == vlakCena && vlakCena != -1)
+    {
+        printf("Putuvayte s vlak za: ");
+    }
+    else if (minimalnaCena == avtobusCena && avtobusCena != -1)
+    {
+        printf("Putuvayte s avtobus za: ");
+    }
+    else
+    {
+        printf("Putuvayte s taksi za: ");
+    }
+
+    printf("%.1f", minimalnaCena);
+
+    return 0;
+}
+int zadacha8()
+{
+ double V, debet1, debet2, N;
+    double obshtoVoda, procentZapulnen, truba1Procent, truba2Procent;
+
+    printf("Vuvedete obem na baseyna (kubichni metri): ");
+    scanf("%lf", &V);
+    printf("Vuvedete debet na purvata truba (litri v chas): ");
+    scanf("%lf", &debet1);
+    printf("Vuvedete debet na vtorata truba (litri v chas): ");
+    scanf("%lf", &debet2);
+    printf("Vuvedete chasove, koito rabotnikut e otsastval: ");
+    scanf("%lf", &N);
+
+    obshtoVoda = (debet1 + debet2) * N;
+
+    if (obshtoVoda >= V * 1000)
+    {
+        printf("Baseynut se e preplnil s %.2f litra.\n", obshtoVoda - V * 1000);
+    }
+    else
+    {
+        procentZapulnen = (obshtoVoda / (V * 1000)) * 100;
+        truba1Procent = (debet1 * N / obshtoVoda) * 100;
+        truba2Procent = (debet2 * N / obshtoVoda) * 100;
+        printf("Baseynut e zapulnen na %.2f%%.\n", procentZapulnen);
+        printf("Pyrvata truba: %.2f%%.\n", truba1Procent);
+        printf("Vtorata truba: %.2f%%.\n", truba2Procent);
+    }
+    return 0;
+}
+int zadacha9()
+{
+    double X, Y, Z, grozde, vinoProizvedeno, vinoZaProdan, ostanaloVino, vinoNaRabotnik;
+    int rabotnici;
+
+    printf("Vuvedete plosht na lozeto (kv.m): ");
+    scanf("%lf", &X);
+    printf("Vuvedete kg grozde ot kv.m: ");
+    scanf("%lf", &Y);
+    printf("Vuvedete jelano kolichestvo vino (litri): ");
+    scanf("%lf", &Z);
+    printf("Vuvedete broy rabotnitsi: ");
+    scanf("%d", &rabotnici);
+
+    grozde = X * Y;
+    vinoProizvedeno = (grozde * 0.4) / 2.5;
+
+    if (vinoProizvedeno >= Z)
+    {
+        ostanaloVino = vinoProizvedeno - Z;
+        vinoNaRabotnik = ostanaloVino / rabotnici;
+        printf("Dostatychno! Proizvedeni: %.2f l., Ostava: %.2f l., Po %.2f l. na rabotnik.\n", vinoProizvedeno, ostanaloVino, vinoNaRabotnik);
+    }
+    else
+    {
+        printf("Nedostatychno! Ne stigat %.2f l.\n", Z - vinoProizvedeno);
+    }
+    return 0;
+}
+int zadacha10()
+{
+    int n, chislo;
+    int p1 = 0, p2 = 0, p3 = 0, p4 = 0, p5 = 0;
+
+    printf("Vuvedete broy chisla: ");
+    scanf("%d", &n);
+
+    for (int i = 0; i < n; i++)
+    {
+        printf("Vuvedete chislo: ");
+        scanf("%d", &chislo);
+
+        if (chislo < 200)
+        {
+            p1++;
+        }
+        else if (chislo < 400)
+        {
+            p2++;
+        }
+        else if (chislo < 600)
+        {
+            p3++;
+        }
+        else if (chislo < 800)
+        {
+            p4++;
+        }
+        else
+        {
+            p5++;
+        }
+    }
+
+    printf("p1: %.1f%%\n", (p1 * 100.0) / n);
+    printf("p2: %.1f%%\n", (p2 * 100.0) / n);
+    printf("p3: %.1f%%\n", (p3 * 100.0) / n);
+    printf("p4: %.1f%%\n", (p4 * 100.0) / n);
+    printf("p5: %.1f%%\n", (p5 * 100.0) / n);
+    return 0;
+}
+
+int zadacha11()
+{
+    int n;
+    printf("Vuvedete n: ");
+    scanf("%d", &n);
+
+    printf("/");
+    for(int i = 0; i < n / 2; i++) printf("^");
+    printf("\\");
+
+    if(n > 4) {
+        for(int i = 0; i < n - 4 + (n % 2); i++) printf("_");
+    }
+
+    printf("/");
+    for(int i = 0; i < n / 2; i++) printf("^");
+    printf("\\\n");
+
+    for(int red = 0; red < n - 3; red++) {
+        printf("|");
+        for(int i = 0; i < 2 * n - 2; i++) printf(" ");
+        printf("|\n");
+    }
+
+    if(n > 2) {
+        printf("|");
+        for(int i = 0; i < n / 2; i++) printf(" ");
+        for(int i = 0; i < n - 3; i++) printf("_");
+        for(int i = 0; i < (n / 2) + (n % 2) - 1; i++) printf(" ");
+        printf("|\n");
+    }
+
+    printf("\\");
+    for(int i = 0; i < n / 2; i++) printf("_");
+    printf("/");
+
+    if(n > 4) {
+        for(int i = 0; i < n - 4 + (n % 2); i++) printf(" ");
+    }
+
+    printf("\\");
+    for(int i = 0; i < n / 2; i++) printf("_");
+    printf("/\n");
+
+    return 0;
+}
+
+
+int zadacha12()
+{
+    int n;
+    printf("Vuvedete n: ");
+    scanf("%d", &n);
+
+    for(int red = 0; red < n - 2; red++) {
+        for(int i = 0; i < n - 1 - red; i++) printf("*");
+        printf("\\");
+        for(int i = 0; i < red; i++) printf(" ");
+        printf("/");
+        for(int i = 0; i < n - 1 - red; i++) printf("*");
+        printf("\n");
+
+        if(red < n - 3) {
+            for(int i = 0; i < n - 1 - red; i++) printf("-");
+            printf("\\");
+            for(int i = 0; i < red; i++) printf(" ");
+            printf("/");
+            for(int i = 0; i < n - 1 - red; i++) printf("-");
+            printf("\n");
+        }
+    }
+
+    for(int i = 0; i < n - 1; i++) printf(" ");
+    printf("@\n");
+
+    for(int red = n - 3; red >= 0; red--) {
+        for(int i = 0; i < n - 1 - red; i++) printf("*");
+        printf("/");
+        for(int i = 0; i < red; i++) printf(" ");
+        printf("\\");
+        for(int i = 0; i < n - 1 - red; i++) printf("*");
+        printf("\n");
+
+        if(red > 0) {
+            for(int i = 0; i < n - 1 - red; i++) printf("-");
+            printf("/");
+            for(int i = 0; i < red; i++) printf(" ");
+            printf("\\");
+            for(int i = 0; i < n - 1 - red; i++) printf("-");
+            printf("\n");
+        }
+    }
+
+    return 0;
+}
