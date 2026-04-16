@@ -1,0 +1,461 @@
+#include <stdio.h>
+#include <math.h>
+#include <stdbool.h>
+
+int main()
+{
+    int a;
+    while(true)
+    {
+            printf("\nIzberete zadacha (1-16): ");
+            scanf("%d", &a);
+            switch(a)
+            {
+                case 1:
+                    zadacha1();
+                    break;
+                case 2:
+                    zadacha2();
+                    break;
+                case 3:
+                    zadacha3();
+                    break;
+                case 4:
+                    zadacha4();
+                    break;
+                case 5:
+                    zadacha5();
+                    break;
+                case 6:
+                    zadacha6();
+                    break;
+                case 7:
+                    zadacha7();
+                    break;
+                case 8:
+                    zadacha8();
+                    break;
+                case 9:
+                    zadacha9();
+                    break;
+                case 10:
+                    zadacha10();
+                    break;
+                case 11:
+                    zadacha11();
+                    break;
+                case 12:
+                    zadacha12();
+                    break;
+                case 13:
+                    zadacha13();
+                    break;
+                case 14:
+                    zadacha14();
+                    break;
+                case 15:
+                    zadacha15();
+                    break;
+                case 16:
+                    zadacha16();
+                    break;
+            }
+    }
+
+    return 0;
+
+}
+void zadacha1()
+{
+    printf("1 - edno\n");
+    printf("2 - dve\n");
+    printf("3 - tri\n");
+    printf("4 - chetiri\n");
+    printf("5 - pet\n");
+    printf("6 - shest\n");
+    printf("7 - sedem\n");
+    printf("8 - osem\n");
+    printf("9 - devet\n");
+    printf("10 - deset\n\n");
+
+    return 0;
+}
+void zadacha2()
+{
+    for(int i = 1; i <= 10; i++)
+    {
+        for(int j = 1; j <= i; j++)
+        {
+            printf("*");
+        }
+        printf("\n");
+    }
+    printf("\n");
+
+    return 0;
+}
+void zadacha3()
+{
+    char symbol;
+    printf("Vuvedete znak za ramkata: ");
+    scanf(" %c", &symbol);
+    for(int i = 0; i < 10; i++)
+    {
+        printf("%c", symbol);
+    }
+    printf("\n");
+    for(int i = 0; i < 3; i++)
+    {
+        printf("%c", symbol);
+        for(int j = 0; j < 8; j++)
+        {
+            printf(" ");
+        }
+        printf("%c\n", symbol);
+    }
+    for(int i = 0; i < 10; i++)
+    {
+        printf("%c", symbol);
+    }
+    printf("\n\n");
+
+    return 0;
+}
+
+void zadacha4()
+{
+    char symbol;
+    printf("Vuvedete znak za triugulnika: ");
+    scanf(" %c", &symbol);
+    printf("\nPrav triugulnik:\n\n");
+    int spaces = 8;
+    for(int i = 0; i < 5; i++)
+    {
+        for(int j = 0; j < spaces; j++)
+        {
+            printf(" ");
+        }
+
+        if(i == 0)
+        {
+            printf("%c\n", symbol);
+        }
+        else if(i == 4)
+        {
+            for(int k = 0; k < 9; k++)
+            {
+                printf("%c ", symbol);
+            }
+            printf("\n");
+        }
+        else
+        {
+            printf("%c", symbol);
+            for(int j = 0; j < (i * 4 - 1); j++)
+            {
+                printf(" ");
+            }
+            printf("%c\n", symbol);
+        }
+        spaces -= 2;
+    }
+    printf("\nObraten triugulnik:\n\n");
+    spaces = 0;
+    for(int i = 4; i >= 0; i--)
+    {
+        for(int j = 0; j < spaces; j++)
+        {
+            printf(" ");
+        }
+
+        if(i == 0)
+        {
+            printf("%c\n", symbol);
+        }
+        else if(i == 4)
+        {
+            for(int k = 0; k < 9; k++)
+            {
+                printf("%c ", symbol);
+            }
+            printf("\n");
+        }
+        else
+        {
+            printf("%c", symbol);
+            for(int j = 0; j < (i * 4 - 1); j++)
+            {
+                printf(" ");
+            }
+            printf("%c\n", symbol);
+        }
+        spaces += 2;
+    }
+    printf("\n");
+
+    return 0;
+}
+
+void zadacha5()
+{
+    double inches;
+
+    printf("Vuvedete inchove: ");
+    scanf("%lf", &inches);
+
+    printf("\nRezultati:\n");
+
+    printf("%.2f incha = %.2f mm\n", inches, inches * 25.4);
+    printf("%.2f incha = %.2f cm\n", inches, inches * 2.54);
+    printf("%.2f incha = %.2f dm\n", inches, inches * 0.254);
+    printf("%.2f incha = %.2f m\n", inches, inches * 0.0254);
+
+    return 0;
+}
+
+void zadacha6()
+{
+    double celsius;
+
+    printf("Vuvedete gradusi Celsius: ");
+    scanf("%lf", &celsius);
+
+    double fahrenheit = (celsius * 9/5) + 32;
+    printf("%.2f C = %.2f F\n\n", celsius, fahrenheit);
+
+    return 0;
+}
+
+void zadacha7()
+{
+    double degrees;
+
+    printf("Vuvedete gradusi: ");
+    scanf("%lf", &degrees);
+
+    double radians = degrees * (M_PI / 180.0);
+    printf("%.2f gradusa = %.4f radiana\n", degrees, radians);
+
+    return 0;
+}
+
+void zadacha8()
+{
+    double leva;
+    double usd_rate = 0.55;
+    double eur_rate = 0.51;
+    double gbp_rate = 0.44;
+
+    printf("Vuvedete suma v leva: ");
+    scanf("%lf", &leva);
+
+    printf("\n%.2f BGN = %.2f USD\n", leva, leva * usd_rate);
+    printf("%.2f BGN = %.2f EUR\n", leva, leva * eur_rate);
+    printf("%.2f BGN = %.2f GBP\n", leva, leva * gbp_rate);
+    return 0;
+}
+void zadacha9()
+{
+    double a, b, h;
+
+    printf("Vuvedete strana a: ");
+    scanf("%lf", &a);
+    printf("Vuvedete strana b: ");
+    scanf("%lf", &b);
+    printf("Vuvedete visochina h: ");
+    scanf("%lf", &h);
+
+    double area = ((a + b) * h) / 2;
+    printf("Liceto na trapeca e: %.2f\n\n", area);
+    return 0;
+}
+void zadacha10()
+{
+    double degrees;
+
+    printf("Vuvedete ugul v gradusi: ");
+    scanf("%lf", &degrees);
+
+    double radians = degrees * (M_PI / 180.0);
+    double sinus = sin(radians);
+    double cosinus = cos(radians);
+
+    printf("\nZa ugul %.2f gradusa:\n", degrees);
+    printf("Sinus: %.4f\n", sinus);
+    printf("Cosinus: %.4f\n", cosinus);
+
+    if(cosinus != 0)
+    {
+        printf("Tangens: %.4f\n", sinus / cosinus);
+    }
+    else
+    {
+        printf("Tangens: nedefiniran (delenie na 0)\n");
+    }
+
+    if(sinus != 0)
+    {
+        printf("Kotangens: %.4f\n\n", cosinus / sinus);
+    }
+    else
+    {
+        printf("Kotangens: nedeftiniran (delenie na 0)\n\n");
+    }
+    return 0;
+}
+int zadacha11()
+{
+    double w, h;
+    int mesta_na_red, redove, broi_mesta;
+
+
+    printf("Vuvedete duljina i shirina na zalata v metri (w h): ");
+    scanf("%lf %lf", &w, &h);
+
+    w = w * 100;
+    h = h * 100;
+
+
+    double shirina_za_mesta = h - 100;
+    mesta_na_red = (int)(shirina_za_mesta / 70);
+    redove = (int)(w / 120);
+
+    broi_mesta = mesta_na_red * redove - 3;
+
+    printf("Broi rabotni mesta: %d\n", broi_mesta);
+
+    return 0;
+}
+int zadacha12()
+{
+    double cena_zelenchuci, cena_plodove;
+    int kg_zelenchuci, kg_plodove;
+    double obshta_suma_evro;
+
+
+    printf("Cena za kg zelenchuci (lv): ");
+    scanf("%lf", &cena_zelenchuci);
+    printf("Cena za kg plodove (lv): ");
+    scanf("%lf", &cena_plodove);
+    printf("Kilogrami zelenchuci: ");
+    scanf("%d", &kg_zelenchuci);
+    printf("Kilogrami plodove: ");
+    scanf("%d", &kg_plodove);
+
+
+    double obshta_suma_lv = (cena_zelenchuci * kg_zelenchuci) + (cena_plodove * kg_plodove);
+    obshta_suma_evro = obshta_suma_lv / 1.95;
+
+    printf("Prihodi v evro: %.2f EUR\n", obshta_suma_evro);
+
+    return 0;
+}
+int zadacha13()
+{
+    double w, h;
+    int mesta_na_red, redove, broi_mesta;
+
+    printf("Vuvedete duljina i shirina na zalata v metri (w h): ");
+    scanf("%lf %lf", &w, &h);
+
+    w = w * 100;
+    h = h * 100;
+    double shirina_za_mesta = h - 100;
+
+    mesta_na_red = (int)(shirina_za_mesta / 70);
+    redove = (int)(w / 120);
+
+    broi_mesta = mesta_na_red * redove;
+    broi_mesta = broi_mesta - 3;
+
+    printf("Broi rabotni mesta: %d\n", broi_mesta);
+
+    return 0;
+}
+
+int zadacha14()
+{
+    double cena_zelenchuci, cena_plodove;
+    int kg_zelenchuci, kg_plodove;
+    double obshta_suma_lv, obshta_suma_evro;
+
+
+    printf("Cena za kilogram zelenchuci (lv): ");
+    scanf("%lf", &cena_zelenchuci);
+    printf("Cena za kilogram plodove (lv): ");
+    scanf("%lf", &cena_plodove);
+    printf("Kilogrami zelenchuci: ");
+    scanf("%d", &kg_zelenchuci);
+    printf("Kilogrami plodove: ");
+    scanf("%d", &kg_plodove);
+
+
+
+    obshta_suma_lv = (cena_zelenchuci * kg_zelenchuci) + (cena_plodove * kg_plodove);
+    obshta_suma_evro = obshta_suma_lv / 1.95;
+
+    printf("\nPrihodi ot rekoltata:\n");
+    printf("Obshta suma v evro: %.2f EUR\n", obshta_suma_evro);
+
+    return 0;
+}
+
+int zadacha15()
+{
+    double N, W, L, M, O;
+    double plosht_ploshtadka, plosht_peyka, plosht_za_pokrivane;
+    double plosht_pochka, broy_pochki;
+    double vreme;
+
+
+    printf("Strana na ploshtadkata N (metri): ");
+    scanf("%lf", &N);
+    printf("Shirina na plochka W (metri): ");
+    scanf("%lf", &W);
+    printf("Duljina na plochka L (metri): ");
+    scanf("%lf", &L);
+    printf("Shirina na peykata M (metri): ");
+    scanf("%lf", &M);
+    printf("Duljina na peykata O (metri): ");
+    scanf("%lf", &O);
+
+    plosht_ploshtadka = N * N;
+    plosht_pochka = W * L;
+    plosht_peyka = M * O;
+
+    plosht_za_pokrivane = plosht_ploshtadka - plosht_peyka;
+    broy_pochki = plosht_za_pokrivane / plosht_pochka;
+
+    vreme = broy_pochki * 0.2;
+
+
+    printf("Plosht na ploshtadkata: %.2f m2\n", plosht_ploshtadka);
+    printf("Plosht na peykata: %.2f m2\n", plosht_peyka);
+    printf("Plosht za pokrivane: %.2f m2\n", plosht_za_pokrivane);
+    printf("Plosht na edna plochka: %.2f m2\n", plosht_pochka);
+    printf("Neobhodimi plochki: %.2f\n", broy_pochki);
+    printf("Vreme za postavqne: %.2f minuti\n", vreme);
+
+    return 0;
+}
+int zadacha16()
+{
+    double N,M,kurs;
+    double bonus, danuci;
+    double sredna_pechalba;
+
+    printf("Vuvedete dni, koito raboti sredno: ");
+    scanf("%lf",&N);
+    printf("Vuvedete pari, koito vadi sredno: ");
+    scanf("%lf",&M);
+    printf("Vuvedete kurs na dolara (1 USD = ? BGN): ");
+    scanf("%lf", &kurs);
+
+    bonus = 2.5*N*M;
+    double godina = 12 * N * M + bonus;
+    danuci = godina * 0.25;
+    sredna_pechalba = (godina - danuci)* kurs / 365;
+
+    printf("Sredna pechalba: %f", sredna_pechalba);
+    return 0;
+}
