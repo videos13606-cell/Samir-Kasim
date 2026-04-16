@@ -1,0 +1,273 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+// 1z: Proverka na redove i koloni
+void zadacha1() {
+    printf("\n--- Zadacha 1 ---\n");
+    int n, m, i, j;
+    printf("Vuvedi N i M: ");
+    scanf("%d %d", &n, &m);
+    int mat[n][m];
+
+    for(i = 0; i < n; i++)
+        for(j = 0; j < m; j++) scanf("%d", &mat[i][j]);
+
+    int redove_ok = 1, koloni_ok = 1;
+    for(i = 0; i < n; i++)
+        for(j = 0; j < m - 1; j++)
+            if(mat[i][j] >= mat[i][j+1]) redove_ok = 0;
+
+    for(j = 0; j < m; j++)
+        for(i = 0; i < n - 1; i++)
+            if(mat[i][j] <= mat[i+1][j]) koloni_ok = 0;
+
+    if(redove_ok && koloni_ok) printf("Uslovieto e izpulneno!\n");
+    else printf("Uslovieto NE e izpulneno.\n");
+}
+
+// 2z: Nay-golyam sbor na okolni
+void zadacha2() {
+    printf("\n--- Zadacha 2 ---\n");
+    int n, m, i, j;
+    printf("Vuvedi N i M: ");
+    scanf("%d %d", &n, &m);
+    int mat[n][m];
+    for(i = 0; i < n; i++)
+        for(j = 0; j < m; j++) scanf("%d", &mat[i][j]);
+
+    int max_sbor = -999999, tishlo;
+    for(i = 0; i < n; i++) {
+        for(j = 0; j < m; j++) {
+            int segashen_sbor = 0;
+            for(int r = i-1; r <= i+1; r++) {
+                for(int k = j-1; k <= j+1; k++) {
+                    if(r >= 0 && r < n && k >= 0 && k < m && !(r == i && k == j))
+                        segashen_sbor += mat[r][k];
+                }
+            }
+            if(segashen_sbor > max_sbor) {
+                max_sbor = segashen_sbor;
+                tishlo = mat[i][j];
+            }
+        }
+    }
+    printf("Chisloto s nay-golyam sbor na okolni (%d) e: %d\n", max_sbor, tishlo);
+}
+
+// 3z: Razmqna na redove
+void zadacha3() {
+    printf("\n--- Zadacha 3 ---\n");
+    int n, m;
+    printf("Vuvedi N i M: ");
+    scanf("%d %d", &n, &m);
+    int mat[n][m];
+    int min_val = 999999, max_val = -999999, r_min = 0, r_max = 0;
+
+    for(int i = 0; i < n; i++) {
+        for(int j = 0; j < m; j++) {
+            scanf("%d", &mat[i][j]);
+            if(mat[i][j] < min_val) { min_val = mat[i][j]; r_min = i; }
+            if(mat[i][j] > max_val) { max_val = mat[i][j]; r_max = i; }
+        }
+    }
+    for(int j = 0; j < m; j++) {
+        int temp = mat[r_min][j];
+        mat[r_min][j] = mat[r_max][j];
+        mat[r_max][j] = temp;
+    }
+    printf("Matricata sled razmqnata:\n");
+    for(int i = 0; i < n; i++) {
+        for(int j = 0; j < m; j++) printf("%d ", mat[i][j]);
+        printf("\n");
+    }
+}
+
+// 4z: Priyateli (Oprostena s matrica na susedstvo za malki N ili broyach)
+void zadacha4() {
+    printf("\n--- Zadacha 4 ---\n");
+    int n, m, p1, p2, tursen;
+    printf("Vuvedi broy lude i priyatelstva: ");
+    scanf("%d %d", &n, &m);
+    int priyately[1001] = {0}; // Masiv za broene (za malki primeri)
+    printf("Vuvedi dvoykite:\n");
+    for(int i = 0; i < m; i++) {
+        scanf("%d %d", &p1, &p2);
+        if(p1 <= 1000) priyately[p1]++;
+        if(p2 <= 1000) priyately[p2]++;
+    }
+    printf("Koy chovek tursish? ");
+    scanf("%d", &tursen);
+    printf("Chovekut %d ima %d priyateli.\n", tursen, priyately[tursen]);
+}
+
+void zadacha5() {
+    printf("\n--- Zadacha 5: Softuerut na Naum ---\n");
+    int masiv[1000];
+    int broy = 0;
+    int n, i, j, x, komanda;
+
+    // Purvonachalno vvezhdane na masiva
+    printf("Kolko chisla shte vuvedesh purvonachalno? ");
+    scanf("%d", &n);
+    printf("Vuvedi chislata: ");
+    for(i = 0; i < n; i++) {
+        scanf("%d", &masiv[broy]);
+        broy++;
+    }
+
+    while(1) {
+        printf("\nIzberi komanda (1:add, 2:delete, 3:smallest, 0:izhod): ");
+        scanf("%d", &komanda);
+
+        if(komanda == 0) break;
+
+        if(komanda == 1) {
+            // 1: add(x)
+            printf("Vuvedi chislo za dobavyane: ");
+            scanf("%d", &x);
+            masiv[broy] = x;
+            broy++;
+            printf("Chisloto %d e dobaveno.\n", x);
+        }
+        else if(komanda == 2) {
+            // 2: delete(x)
+            printf("Vuvedi chislo za iztrivane: ");
+            scanf("%d", &x);
+            int novo_broy = 0;
+            for(i = 0; i < broy; i++) {
+                if(masiv[i] != x) {
+                    masiv[novo_broy] = masiv[i];
+                    novo_broy++;
+                }
+            }
+            if(broy == novo_broy) printf("Chisloto %d ne e namereno.\n", x);
+            else printf("Vsitchki sreshtaniya na %d sa iztriti.\n", x);
+            broy = novo_broy;
+        }
+        else if(komanda == 3) {
+            // 3: smallest(x)
+            printf("Koe po red nay-malko chislo tursish? ");
+            scanf("%d", &x);
+
+            if(x > broy || x <= 0) {
+                printf("Nyamash dostatutchno elementi!\n");
+                continue;
+            }
+
+            // Pravim kopie na masiva, za da ne razvalim originalniya red pri sortirane
+            int temp_masiv[1000];
+            for(i = 0; i < broy; i++) temp_masiv[i] = masiv[i];
+
+            // Prost sort (Bubble sort)
+            for(i = 0; i < broy - 1; i++) {
+                for(j = 0; j < broy - i - 1; j++) {
+                    if(temp_masiv[j] > temp_masiv[j+1]) {
+                        int temp = temp_masiv[j];
+                        temp_masiv[j] = temp_masiv[j+1];
+                        temp_masiv[j+1] = temp;
+                    }
+                }
+            }
+            printf("%d-toto nay-malko chislo e: %d\n", x, temp_masiv[x-1]);
+        }
+        else {
+            printf("Greshna komanda!\n");
+        }
+    }
+}
+
+// 6z: Dinamichen masiv i prosti chisla
+int e_prosto(int n) {
+    if(n < 2) return 0;
+    for(int i = 2; i*i <= n; i++) if(n % i == 0) return 0;
+    return 1;
+}
+void zadacha6() {
+    printf("\n--- Zadacha 6 ---\n");
+    int n, *m1, *m2, b1 = 0, b2 = 0;
+    printf("Vuvedi n: "); scanf("%d", &n);
+    m1 = (int*)malloc(n * sizeof(int));
+    m2 = (int*)malloc(n * sizeof(int));
+    for(int i = 0; i < n; i++) {
+        int num; scanf("%d", &num);
+        if(e_prosto(num)) m2[b2++] = num;
+        else m1[b1++] = num;
+    }
+    printf("Bez prosti: "); for(int i=0; i<b1; i++) printf("%d ", m1[i]);
+    printf("\nSamo prosti: "); for(int i=0; i<b2; i++) printf("%d ", m2[i]);
+    printf("\n");
+    free(m1); free(m2);
+}
+
+// 7z: Maksimalna podmatrica 3x3
+void zadacha7() {
+    printf("\n--- Zadacha 7 ---\n");
+    int n, m;
+    printf("Vuvedi N i M (minimum 3): ");
+    scanf("%d %d", &n, &m);
+    int mat[n][m];
+    for(int i=0; i<n; i++) for(int j=0; j<m; j++) scanf("%d", &mat[i][j]);
+
+    int max_sbor = -999999, r_start = 0, k_start = 0;
+    for(int i=0; i <= n-3; i++) {
+        for(int j=0; j <= m-3; j++) {
+            int sbor = 0;
+            for(int r=i; r<i+3; r++) for(int k=j; k<j+3; k++) sbor += mat[r][k];
+            if(sbor > max_sbor) { max_sbor = sbor; r_start = i; k_start = j; }
+        }
+    }
+    printf("Podmatricata e:\n");
+    for(int i=r_start; i<r_start+3; i++) {
+        for(int j=k_start; j<k_start+3; j++) printf("%d ", mat[i][j]);
+        printf("\n");
+    }
+}
+
+// 8z: Vmukvane v dinamichen masiv
+void zadacha8() {
+    printf("\n--- Zadacha 8 ---\n");
+    int *arr = (int*)malloc(100 * sizeof(int));
+    int broy = 10;
+    printf("Vuvedi 10 chisla:\n");
+    for(int i=0; i<10; i++) scanf("%d", &arr[i]);
+
+    int num, pos;
+    while(1) {
+        printf("Vuvedi chislo i poziciya (0 za kray): ");
+        scanf("%d", &num);
+        if(num == 0) break;
+        scanf("%d", &pos);
+        if(pos > broy) pos = broy;
+        for(int i = broy; i > pos; i--) arr[i] = arr[i-1];
+        arr[pos] = num;
+        broy++;
+    }
+    for(int i=0; i<broy; i++) printf("%d ", arr[i]);
+    printf("\n");
+    free(arr);
+}
+
+int main() {
+    int izbor;
+    while(1) {
+        printf("\n=== IZBERI ZADACHA (1-8) ili 0 za kray ===\n");
+        if(scanf("%d", &izbor) != 1) {
+            printf("Greshka! Dai tishlo.\n");
+            while(getchar() != '\n');
+            continue;
+        }
+        if(izbor == 0) break;
+        switch(izbor) {
+            case 1: zadacha1(); break;
+            case 2: zadacha2(); break;
+            case 3: zadacha3(); break;
+            case 4: zadacha4(); break;
+            case 5: zadacha5(); break;
+            case 6: zadacha6(); break;
+            case 7: zadacha7(); break;
+            case 8: zadacha8(); break;
+            default: printf("Nqma takava zadacha!\n");
+        }
+    }
+    return 0;
+}
