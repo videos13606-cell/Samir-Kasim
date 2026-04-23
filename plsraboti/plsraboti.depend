@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1776924101 source:c:\users\video\desktop\tu\2\bpe\youtube\plsraboti\main.c
+	<stdio.h>
+	<string.h>
+	<stdlib.h>
+
